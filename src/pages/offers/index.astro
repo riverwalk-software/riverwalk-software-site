@@ -5,11 +5,14 @@ import NarrowContainer from "@containers/NarrowContainer";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import After1 from "./_assets/after1.png";
+import After2 from "./_assets/after2.png";
 import After3 from "./_assets/after3.png";
 import Before1 from "./_assets/before1.png";
+import Before2 from "./_assets/before2.png";
 import Before3 from "./_assets/before3.png";
 import HorizontalContent from "./_components/HorizontalContent.astro";
 import HorizontalImages from "./_components/HorizontalImages.astro";
+import PopupForm from "./_components/PopupForm";
 
 const videoId = "_afyiQB7N0Y";
 
@@ -49,7 +52,7 @@ const faqs = [
   hideHeader="false"
 >
   <NarrowContainer>
-    <section class="pt-16 md:pt-8">
+    <section class="relative z-50 pt-16 md:pt-8">
       <header>
         <Prose class="max-w-none">
           <h1 class="text-center">More Sales for the Same Ad Spend</h1>
@@ -66,21 +69,58 @@ const faqs = [
           We'll optimize your store's performance for free. We just want case
           studies.
         </p>
+        <div class="mt-10 text-center">
+          <PopupForm client:visible />
+        </div>
       </HorizontalContent>
     </section>
-    <section class="mb-16">
+    <section class="z-0 mb-16">
       <Prose class="mx-auto my-8"
         ><h2 class="text-center">
           Optimized for high conversions and retention
         </h2></Prose
       >
-      <HorizontalImages>
-        <Image src={Before3} alt="First before example" slot="leftImage" />
-        <Image src={After3} alt="First after example" slot="rightImage" />
+      <HorizontalImages class="z-0">
+        <Image
+          src={Before1}
+          alt="First before example"
+          slot="leftImage"
+          class="z-10"
+        />
+        <Image
+          src={After1}
+          alt="First after example"
+          slot="rightImage"
+          class="z-10"
+        />
       </HorizontalImages>
       <HorizontalImages>
-        <Image src={Before1} alt="Second before example" slot="leftImage" />
-        <Image src={After1} alt="Second after example" slot="rightImage" />
+        <Image
+          src={Before2}
+          alt="Second before example"
+          slot="leftImage"
+          class=""
+        />
+        <Image
+          src={After2}
+          alt="Second after example"
+          slot="rightImage"
+          class=""
+        />
+      </HorizontalImages>
+      <HorizontalImages>
+        <Image
+          src={Before3}
+          alt="Third before example"
+          slot="leftImage"
+          class=""
+        />
+        <Image
+          src={After3}
+          alt="Third after example"
+          slot="rightImage"
+          class=""
+        />
       </HorizontalImages>
     </section>
     <section class="mb-16">
@@ -116,6 +156,11 @@ const faqs = [
           </li>
         </ul>
       </Prose>
+    </section>
+    <section class="mb-16">
+      <Prose class="mx-auto my-8"
+        ><h2 class="text-center">How it works</h2></Prose
+      >
     </section>
     <section class="mb-16">
       <Prose class="mx-auto my-8"><h2 class="text-center">FAQs</h2></Prose>

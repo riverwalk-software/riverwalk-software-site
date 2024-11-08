@@ -3,9 +3,15 @@ import { YouTube } from "astro-embed";
 
 interface Props {
   id: string;
+  classes?: string;
 }
 
-const { id } = Astro.props;
+const { id, classes = "" } = Astro.props;
 ---
 
-<YouTube {id} title="Prefer Watching?" posterQuality="high" class="my-8" />
+<YouTube
+  {id}
+  title="Learn more"
+  posterQuality="high"
+  class={`min-w-3xl ${classes}`}
+/>
