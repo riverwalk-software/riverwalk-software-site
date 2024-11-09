@@ -41,6 +41,8 @@ const faqs = [
     answer: "Yes, this will not impact any tracking for your campaigns.",
   },
 ];
+
+let showPopup = false;
 ---
 
 <BaseLayout
@@ -52,7 +54,29 @@ const faqs = [
   hideHeader="false"
 >
   <NarrowContainer>
-    <section class="relative z-50 pt-16 md:pt-8">
+    <div
+      id="form"
+      class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black bg-opacity-50"
+    >
+      <div class="relative z-50 w-full rounded-md shadow-lg">
+        <PopupForm client:visible />
+        <button
+          id="closeButton"
+          class="absolute right-2 top-2 text-gray-500 hover:text-gray-700"
+        >
+          &times;
+        </button>
+      </div>
+    </div>
+    <!-- <div id="form" class="hidden">
+      <div
+        class="trasnform-[translate(-50%, -50%)] relative left-[50%] top-[50%] z-50 w-full"
+      >
+        <PopupForm client:visible />
+      </div>
+    </div> -->
+
+    <section class="relative pt-16 md:pt-8">
       <header>
         <Prose class="max-w-none">
           <h1 class="text-center">More Sales for the Same Ad Spend</h1>
@@ -70,7 +94,12 @@ const faqs = [
           studies.
         </p>
         <div class="mt-10 text-center">
-          <PopupForm client:visible />
+          <button
+            id="formButton"
+            class="rounded-md bg-cta px-3.5 py-2.5 text-base font-semibold text-gray-100 shadow-sm hover:bg-accent-1 hover:text-gray-100 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            <span class="text-white">Take this course</span>
+          </button>
         </div>
       </HorizontalContent>
     </section>
@@ -168,3 +197,20 @@ const faqs = [
     </section>
   </NarrowContainer>
 </BaseLayout>
+
+<script type="application/javascript" defer>
+  const formButton = document.getElementById("formButton");
+  formButton.addEventListener("click", () => {
+    const form = document.getElementById("form");
+    const classes = form.className.split(" ");
+    if (!classes.includes("hidden")) {
+      form.className += " hidden";
+      console.log(form.className);
+    } else {
+      form.className = classes
+        .filter((s) => s !== "hidden")
+        .reduce((a, b) => a + " " + b, "");
+      console.log(form.className);
+    }
+  });
+</script>
