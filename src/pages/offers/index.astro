@@ -56,13 +56,13 @@ let showPopup = false;
   <NarrowContainer>
     <div
       id="form"
-      class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50 px-4"
     >
-      <div class="relative z-50 w-full rounded-md shadow-lg">
+      <div class="z-50 flex w-full justify-center rounded-md shadow-lg">
         <PopupForm client:visible />
         <button
           id="closeButton"
-          class="absolute right-2 top-2 text-white hover:text-gray-700"
+          class="absolute right-2 top-2 text-5xl text-white hover:text-gray-700"
         >
           &times;
         </button>
@@ -98,7 +98,7 @@ let showPopup = false;
             id="formButton"
             class="rounded-md bg-cta px-3.5 py-2.5 text-base font-semibold text-gray-100 shadow-sm hover:bg-accent-1 hover:text-gray-100 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            <span class="text-white">Take this course</span>
+            <span class="text-white">Get Started</span>
           </button>
         </div>
       </HorizontalContent>
@@ -187,9 +187,14 @@ let showPopup = false;
       </Prose>
     </section>
     <section class="mb-16">
-      <Prose class="mx-auto my-8"
-        ><h2 class="text-center">How it works</h2></Prose
-      >
+      <div class="mt-10 text-center">
+        <button
+          id="formButtonBottom"
+          class="rounded-md bg-cta px-3.5 py-2.5 text-base font-semibold text-gray-100 shadow-sm hover:bg-accent-1 hover:text-gray-100 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          <span class="text-white">Get Started</span>
+        </button>
+      </div>
     </section>
     <section class="mb-16">
       <Prose class="mx-auto my-8"><h2 class="text-center">FAQs</h2></Prose>
@@ -200,8 +205,21 @@ let showPopup = false;
 
 <script type="application/javascript" defer>
   const formButton = document.getElementById("formButton");
+  const formButtonBottom = document.getElementById("formButtonBottom");
   const closeButton = document.getElementById("closeButton");
   formButton.addEventListener("click", () => {
+    const form = document.getElementById("form");
+    const classes = form.className.split(" ");
+    if (classes.includes("hidden")) {
+      form.className = classes
+        .filter((s) => s !== "hidden")
+        .reduce((a, b) => a + " " + b, "");
+      form.className += " flex";
+      console.log(form.className);
+    }
+  });
+
+  formButtonBottom.addEventListener("click", () => {
     const form = document.getElementById("form");
     const classes = form.className.split(" ");
     if (classes.includes("hidden")) {
